@@ -8,7 +8,7 @@ OLLAMA_BASE_URL = "http://localhost:11434"
 API_PATH = "http://localhost:11434/api/chat"
 MODEL_NAME = "qwen:1.8b"
 
-def build_chain():
+def build_chain_method():
     
     """
     prompt template -> ChatOllama -> Output parser
@@ -43,4 +43,10 @@ def build_chain():
         num_predict=100
     )
 
-    
+    #3. Generate output parser
+    output = StrOutputParser()
+
+    # LCEL
+    chain = prompt | llm | output
+
+    return chain
